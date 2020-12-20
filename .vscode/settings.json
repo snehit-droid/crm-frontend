@@ -1,0 +1,5 @@
+{
+    "javascript.suggest.autoImports": false,
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "typescript.preferences.importModuleSpecifier": "relative"
+}
