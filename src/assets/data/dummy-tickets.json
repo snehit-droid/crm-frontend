@@ -8,25 +8,25 @@
     {
         "id": 2,
         "status": "Client response pending",
-        "subject": "ssl issue",
+        "subject": "client issue",
         "addedAt": "2020-09-23"    
     },
     {
         "id": 3,
         "status": "Client response pending",
-        "subject": "ssl issue",
+        "subject": "email issue",
         "addedAt": "2020-09-23"    
     },
     {
         "id": 4,
         "status": "Client response pending",
-        "subject": "ssl issue",
+        "subject": "server issue",
         "addedAt": "2020-09-23"    
     },
     {
         "id": 5,
         "status": "Client response pending",
-        "subject": "ssl issue",
+        "subject": "email issue",
         "addedAt": "2020-09-23"    
     },
     {
@@ -38,7 +38,7 @@
     {
         "id": 7,
         "status": "Client response pending",
-        "subject": "ssl issue",
+        "subject": "server issue",
         "addedAt": "2020-09-23"    
     },
     {
@@ -56,7 +56,7 @@
     {
         "id": 10,
         "status": "Client response pending",
-        "subject": "ssl issue",
+        "subject": "client issue",
         "addedAt": "2020-09-23"    
     }
 ]
