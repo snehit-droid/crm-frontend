@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { PageBreadcrumb } from '../../components/breadcrumb/Breadcrumb.comp'
 import { AddTicketForm } from '../../components/add-ticket-form/AddTicketForm.comp'
