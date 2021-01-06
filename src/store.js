@@ -1,10 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import ticketsReducer from './pages/ticket-list/ticketSlice';
+import loginReducer from './components/login/loginSlice';
+import userReducer from './pages/dashboard/userSlice';
 
 const store = configureStore({
     reducer: {
-        tickets: ticketsReducer, 
+        tickets: ticketsReducer,
+        login: loginReducer,
+        user: userReducer, 
     },
 });
 
