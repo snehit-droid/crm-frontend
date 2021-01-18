@@ -1,18 +1,18 @@
-import React, {useState} from 'react'
-import {Form, Button} from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from "react-redux";
-import PropTypes from 'prop-types'
-import {replyOnTicket} from '../../pages/ticket-list/ticketsAction'
+import PropTypes from 'prop-types';
+import { replyOnTicket } from '../../pages/ticket-list/ticketsAction';
 
-export const UpdateTicket = ({_id}) => {
+export const UpdateTicket = ({ _id }) => {
     const dispatch = useDispatch();
-    const {user: {name}} = useSelector(state => state.user)
+    const { user: {name} } = useSelector((state) => state.user)
     //destructuring user '{name}'
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
 
     const handleOnChange = (e) => {
         setMessage(e.target.value);
-    }
+    };
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -44,9 +44,9 @@ export const UpdateTicket = ({_id}) => {
                 </div>
             </Form>
         </div>
-    )
-}
+    );
+};
 
 UpdateTicket.propTypes = {
     _id: PropTypes.string.isRequired,
-}
+};

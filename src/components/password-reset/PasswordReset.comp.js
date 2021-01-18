@@ -13,12 +13,12 @@ export const ResetPassword = ({ handleOnChange, handleOnResetSubmit, formSwitche
                         <Form.Group>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
-                            type='email'
-                            name='email'
-                            value={email}
-                            onChange = {handleOnChange}
-                            placeholder='Enter Email'
-                            required
+                                type='email'
+                                name='email'
+                                value={email}
+                                onChange = {handleOnChange}
+                                placeholder='Enter Email'
+                                required
                             />
                         </Form.Group>
 
@@ -33,8 +33,8 @@ export const ResetPassword = ({ handleOnChange, handleOnResetSubmit, formSwitche
                </Col> 
             </Row>
         </Container>
-    )
-}
+    );
+};
 
 ResetPassword.propTypes = {
     handleOnChange: PropTypes.func.isRequired,

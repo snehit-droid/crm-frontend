@@ -16,11 +16,11 @@ export const userLogin = (formData) => {
                sessionStorage.setItem("accessJWT", res.data.accessJWT);
                localStorage.setItem("crmSite", JSON.stringify({ refreshJWT: res.data.refreshJWT }));
             }
-       } catch (error) {
+        } catch (error) {
            reject(error);
-       }
+        }
    }); 
-}
+};
 
 export const fetchUser = () => {
     return new Promise(async (resolve, reject) => {
@@ -30,7 +30,7 @@ export const fetchUser = () => {
                 reject("Token not found!");
             }
             const res = await axios.get(userProfileUrl, {
-                headers:{
+                headers: {
                     Authorization: accessJWT,
                 },
             });
@@ -41,7 +41,7 @@ export const fetchUser = () => {
             reject(error.message);
         }
     }); 
-}
+};
 
 export const fetchNewAccessJWT = () => {
     return new Promise(async (resolve, reject) => {
@@ -69,16 +69,16 @@ export const fetchNewAccessJWT = () => {
             reject(false);
         }
     }); 
-}
+};
 
 export const userLogout = async () => {
     try {
         await axios.delete(logoutUrl, {
-            headers:{
+            headers: {
                 Authorization: sessionStorage.getItem('accessJWT')
             },
         });
     } catch (error) {
         console.log(error);
     }
-}
+};

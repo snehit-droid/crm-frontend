@@ -4,7 +4,8 @@ const initialState = {
     isLoading: false,
     error: '',
     successMsg: '',
-}
+};
+
 const newTicketSlice = createSlice({
     name: 'newTicket',
     initialState,
@@ -20,12 +21,12 @@ const newTicketSlice = createSlice({
             state.isLoading = true;
             state.error = payload;
         },
-    }
-})
+    },
+});
 
 export const {
     openNewTicketPending,
     openNewTicketSuccess,
     openNewTicketFail,
 } = newTicketSlice.actions;
-export default newTicketSlice.reducer
+export default newTicketSlice.reducer;

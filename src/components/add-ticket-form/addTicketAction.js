@@ -3,22 +3,22 @@ import {
     openNewTicketSuccess,
     openNewTicketFail,
 } from './addTicketSlicer';
-import {createNewTicket} from '../../api/ticketApi'
+import { createNewTicket } from '../../api/ticketApi';
 
-export const openNewTicket = (formData) => dispatch => {
+export const openNewTicket = (formData) => (dispatch) => {
     return new Promise(async (resolve, reject) => {
         try {
-            dispatch(openNewTicketPending())
+            dispatch(openNewTicketPending());
 
             //call api
             const result = await createNewTicket(formData);
-            if(result.status === "error"){
-                return dispatch(openNewTicketFail(result.message))
+            if(result.status === "error") {
+                return dispatch(openNewTicketFail(result.message));
             }
             dispatch(openNewTicketSuccess(result.message));
         } catch (error) {
             console.log(error);
             dispatch(openNewTicketFail(error.message));
         }
-    })
-}
+    });
+};

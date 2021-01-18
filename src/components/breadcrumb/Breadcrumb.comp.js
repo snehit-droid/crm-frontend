@@ -1,6 +1,6 @@
-import React from 'react'
-import { Breadcrumb } from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
+import React from 'react';
+import { Breadcrumb } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export const PageBreadcrumb = ({ page }) => {
     return (
@@ -10,5 +10,5 @@ export const PageBreadcrumb = ({ page }) => {
             </LinkContainer>
             <Breadcrumb.Item active>{page}</Breadcrumb.Item>
         </Breadcrumb>
-    )
-}
+    );
+};

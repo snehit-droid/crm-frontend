@@ -1,11 +1,11 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Table } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const TicketTable = () => {
 
-    const {searchTicketList, isLoading, error} = useSelector((state) => state.tickets);
+    const { searchTicketList, isLoading, error } = useSelector((state) => state.tickets);
 
     if(isLoading) return <h3>Loading ...</h3>
 
@@ -22,7 +22,7 @@ export const TicketTable = () => {
                 </tr>
             </thead>
             <tbody>
-                {searchTicketList.length ? searchTicketList.map((row) => 
+                {searchTicketList.length ? (searchTicketList.map((row) => 
                 <tr key={row._id}>
                     <td>{row._id}</td>
                     <td>
@@ -31,12 +31,12 @@ export const TicketTable = () => {
                     <td>{row.status}</td>
                     <td>{row.openAt && new Date(row.openAt).toLocaleString()}</td>
                 </tr>
-                ) : 
-                <tr>
+                )) : 
+                (<tr>
                     <td colSpan="4" className="text-center">No Tickets To Show</td>
                 </tr>
-                }
+                )}
             </tbody>
         </Table>
-    )
-}
+    );
+};

@@ -13,7 +13,7 @@ const initialState = {
 const ticketListSlice = createSlice({
     name: 'ticketList',
     initialState,
-    reducers:{
+    reducers: {
         fetchTicketLoading: (state) => {
             state.isLoading = true;
         },
@@ -27,11 +27,11 @@ const ticketListSlice = createSlice({
             state.error = payload;
         },
         searchTickets: (state, { payload }) => {
-            state.searchTicketList = state.tickets.filter(row => {
-                if(!payload) return row
+            state.searchTicketList = state.tickets.filter((row) => {
+                if(!payload) return row;
 
-                return row.subject.toLowerCase().includes(payload.toLowerCase())
-            })
+                return row.subject.toLowerCase().includes(payload.toLowerCase());
+            });
         },
         fetchSingleTicketLoading: (state) => {
             state.isLoading = true;
@@ -51,7 +51,7 @@ const ticketListSlice = createSlice({
         replyTicketSuccess: (state, { payload }) => {
             state.isLoading = false;
             state.error = "";
-            statereplyMsg = payload;
+            state.replyMsg = payload;
         },
         replyTicketFail: (state, { payload }) => {
             state.isLoading = false;
@@ -63,7 +63,7 @@ const ticketListSlice = createSlice({
         closeTicketSuccess: (state, { payload }) => {
             state.isLoading = false;
             state.error = "";
-            statereplyMsg = payload;
+            state.replyMsg = payload;
         },
         closeTicketFail: (state, { payload }) => {
             state.isLoading = false;
@@ -87,6 +87,7 @@ export const {
     closeTicketLoading, 
     closeTicketSuccess, 
     closeTicketFail, 
-    searchTickets } = actions;
+    searchTickets, 
+} = actions;
 
 export default reducer;

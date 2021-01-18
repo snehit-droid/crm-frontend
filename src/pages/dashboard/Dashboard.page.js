@@ -3,12 +3,12 @@ import {useSelector, useDispatch} from 'react-redux'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { TicketTable } from '../../components/ticket-table/TicketTable.comp'
 import { PageBreadcrumb } from '../../components/breadcrumb/Breadcrumb.comp'
-import {Link} from 'react-router-dom';
-import {fetchAllTickets} from '../ticket-list/ticketsAction'
+import { Link } from 'react-router-dom';
+import { fetchAllTickets } from '../ticket-list/ticketsAction'
 
 export const Dashboard = () => {
-    const {tickets} = useSelector(state => state.tickets);
     const dispatch = useDispatch();
+    const { tickets } = useSelector((state) => state.tickets);
 
     useEffect(() => {
         if(!tickets.length){
@@ -16,7 +16,7 @@ export const Dashboard = () => {
         }
     }, [tickets, dispatch])
 
-    const pendingTickets = tickets.filter(row => row.status !== "closed");
+    const pendingTickets = tickets.filter((row) => row.status !== "Closed");
     const totalTickets = tickets.length;
 
     return(
@@ -31,7 +31,7 @@ export const Dashboard = () => {
                     <Link to="/add-ticket">
                         <Button 
                             variant="info" 
-                            style={{'fontSize':'2rem', 'padding':'10px 30px'}}>
+                            style={{ fontSize: '2rem', padding: '10px 30px' }} >
                             Add New Ticket
                         </Button>
                     </Link>        
@@ -55,5 +55,5 @@ export const Dashboard = () => {
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};

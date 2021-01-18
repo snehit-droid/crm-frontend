@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { Jumbotron, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Jumbotron, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap';
 // import PropTypes from 'prop-types'
-import { shortText } from '../../utils/validation'
+import { openNewTicket } from './addTicketAction';
+import { shortText } from '../../utils/validation';
 import './add-ticket-form.style.css';
-import {useDispatch, useSelector} from 'react-redux'
-import {openNewTicket} from './addTicketAction'
 
 const initialFormData = {
     subject: '',
     issueDate: '',
-    message: ''
-}
+    message: '',
+};
 
 const initialFormError = {
     subject: false,
@@ -20,9 +20,9 @@ const initialFormError = {
 
 export const AddTicketForm = () => {
     const dispatch = useDispatch();
-    const {user: {name}} = useSelector(state => state.user);
-    const {isLoading, error, successMsg} = useSelector(state => state.openTicket);
-    const [formData, setFormData] = useState(initialFormData)
+    const {user: {name}} = useSelector((state) => state.user);
+    const { isLoading, error, successMsg } = useSelector((state) => state.openTicket);
+    const [formData, setFormData] = useState(initialFormData);
     const [formDataError, setFormDataError] = useState(initialFormError)
 
     useEffect(() => {}, [formData, formDataError])
@@ -40,7 +40,7 @@ export const AddTicketForm = () => {
         });
 
         dispatch(openNewTicket({ ...formData, sender: name }));
-    }
+    };
 
     const handleOnChange = (e) => {
         const {name, value} = e.target;
@@ -49,7 +49,7 @@ export const AddTicketForm = () => {
             ...formData,
             [name]: value,
         });
-    }
+    };
 
     return (
         <Jumbotron className="mt-3 add-new-ticket bg-light">
@@ -63,16 +63,16 @@ export const AddTicketForm = () => {
             <Form autoComplete="off" onSubmit={handleOnSubmit}>
                 <Form.Group as={Row}>
                     <Form.Label column sm={3}>Subject</Form.Label>
-                    <Col sm={9}>detail
+                    <Col sm={9}>
                         <Form.Control
                             name='subject'
                             value={formData.subject}
-                            onChange = {handleOnChange}
+                            onChange={handleOnChange}
                             placeholder='subject'
                             required
                         />
                         <Form.Text className="text-danger">
-                            {formDataError.subject && "subject is required"}
+                            {formDataError.subject && "Subject is required!"}
                         </Form.Text>
                     </Col>
                 </Form.Group>
@@ -83,7 +83,7 @@ export const AddTicketForm = () => {
                             type='date'
                             name='issueDate'
                             value={formData.issueDate}
-                            onChange = {handleOnChange}
+                            onChange={handleOnChange}
                             required
                         />
                     </Col>
@@ -92,18 +92,18 @@ export const AddTicketForm = () => {
                     <Form.Label>details</Form.Label>
                     <Form.Control
                         as='textarea'
-                        name='details'
+                        name='message'
                         rows='5'
                         value={formData.message}
-                        onChange = {handleOnChange}
+                        onChange={handleOnChange}
                         required
                     />
                 </Form.Group>
                 <Button type="submit" variant='info' block>Open Ticket</Button>
             </Form>
         </Jumbotron>
-    )
-}
+    );
+};
 
 // AddTicketForm.propTypes = {
 //     handleOnSubmit: PropTypes.func.isRequired, 

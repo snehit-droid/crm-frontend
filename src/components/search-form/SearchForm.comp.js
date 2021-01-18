@@ -1,7 +1,7 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Form, Row, Col } from 'react-bootstrap'
-import {filterSearchTicket} from '../../pages/ticket-list/ticketsAction'
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Form, Row, Col } from 'react-bootstrap';
+import { filterSearchTicket } from '../../pages/ticket-list/ticketsAction';
 
 export const SearchForm = () => {
 
@@ -23,5 +23,5 @@ export const SearchForm = () => {
                 </Form.Group>
             </Form>
         </div>
-    )
-}
+    );
+};

@@ -1,63 +1,63 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import {useHistory} from 'react-router-dom'
-import { loginPending, loginSuccess, loginFail } from './loginSlice'
-import { userLogin } from '../../api/userApi'
-import { getUserProfile } from '../../pages/dashboard/userAction' 
+import { Container, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
+import { loginPending, loginSuccess, loginFail } from './loginSlice';
+import { userLogin } from '../../api/userApi';
+import { getUserProfile } from '../../pages/dashboard/userAction';
 
 export const LoginForm = ({ formSwitcher }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const {isLoading, isAuth, error} = useSelector(state => state.login)
+
+    const { isLoading, isAuth, error } = useSelector((state) => state.login);
 
     useEffect(() => {
-        if(sessionStorage.getItem('accessJWT')) 
-            history.push('/dashboard');
+        sessionStorage.getItem("accessJWT") && history.push("/dashboard");
     }, [history, isAuth]);
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('sample@gmail.com');
+    const [password, setPassword] = useState('password');
 
     const handleOnChange = (e) => {
-        const {name, value} = e.target; //destructuring name & value.
+        const { name, value } = e.target; //destructuring name & value.
 
-        switch(name){
+        switch(name) {
             case 'email':
-                setEmail(value)
+                setEmail(value);
                 break;
             case 'password':
-                setPassword(value)
+                setPassword(value);
                 break;
             default:
                 break;        
         }
-    }
+    };
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         
         if(!email || !password){
-            return alert("Fill up the form!");
+            return alert("Fill up all the form!");
         }
         
         dispatch(loginPending());
 
         try {
-            const isAuth = await userLogin({email, password});
+            const isAuth = await userLogin({ email, password });
+
             if(isAuth.status === "error") {
-                dispatch(loginFail(isAuth.message));   
+                return dispatch(loginFail(isAuth.message));   
             }
 
             dispatch(loginSuccess());
             dispatch(getUserProfile());
             history.push("/dashboard");
-
         } catch (error) {
             dispatch(loginFail(error.message));
         }
-    }
+    };
     
     return(
         <Container>
@@ -70,23 +70,23 @@ export const LoginForm = ({ formSwitcher }) => {
                         <Form.Group>
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control
-                            type='email'
-                            name='email'
-                            value={email}
-                            onChange = {handleOnChange}
-                            placeholder='Enter Email'
-                            required
+                                type='email'
+                                name='email'
+                                value={email}
+                                onChange={handleOnChange}
+                                placeholder='Enter Email'
+                                required
                             />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Password</Form.Label>
                             <Form.Control
-                            type='password'
-                            name='password'
-                            value={password}
-                            onChange = {handleOnChange}
-                            placeholder='Enter Password'
-                            required
+                                type='password'
+                                name='password'
+                                value={password}
+                                onChange={handleOnChange}
+                                placeholder='Enter Password'
+                                required
                             />
                         </Form.Group>
 
@@ -98,12 +98,12 @@ export const LoginForm = ({ formSwitcher }) => {
             </Row>
             <Row>
                <Col>
-                <a href='#!' onClick={() => formSwitcher('reset')}>Forgot Password</a>
+                <a href='#!' onClick={() => formSwitcher('reset')}>Forgot Password?</a>
                </Col> 
             </Row>
         </Container>
-    )
-}
+    );
+};
 
 LoginForm.propTypes = {
     formSwitcher: PropTypes.func.isRequired,

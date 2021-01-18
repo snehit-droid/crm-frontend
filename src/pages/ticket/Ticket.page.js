@@ -1,17 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Container, Row, Button, Col, Spinner, Alert} from 'react-bootstrap'
-import { PageBreadcrumb } from '../../components/breadcrumb/Breadcrumb.comp'
-import {MessageHistory} from '../../components/message-history/MessageHistory.comp'
-import {UpdateTicket} from '../../components/update-ticket/UpdateTicket.comp'
-import {useParams} from 'react-router-dom'
-import { fetchSingleTicket, closeTicket } from '../ticket-list/ticketsAction'
+import { Container, Row, Button, Col, Spinner, Alert } from 'react-bootstrap';
+import { PageBreadcrumb } from '../../components/breadcrumb/Breadcrumb.comp';
+import { MessageHistory } from '../../components/message-history/MessageHistory.comp';
+import { UpdateTicket } from '../../components/update-ticket/UpdateTicket.comp';
+import { useParams } from 'react-router-dom';
+import { fetchSingleTicket, closeTicket } from '../ticket-list/ticketsAction';
 
-// const ticket = tickets[3]
 export const Ticket = () => {
     const { tId } = useParams();
     const dispatch = useDispatch();
-    const {isLoading, error, selectedTicket, replyMsg, replyTicketError } = useSelector((state) => state.tickets);
+    const { isLoading, error, selectedTicket, replyMsg, replyTicketError } = useSelector((state) => state.tickets);
 
     useEffect(() => {
         dispatch(fetchSingleTicket(tId));
@@ -24,18 +23,19 @@ export const Ticket = () => {
                     <PageBreadcrumb page="Ticket" />
                 </Col>
             </Row>
+
             <Row>
                 <Col>
                     {isLoading && <Spinner variant='primary' animation='border' />}
                     {error && <Alert variant="danger">{error}</Alert>}
-                    {replyTicketError && <Alert variant="danger">{replyTicketError}</Alert>}
+                    {replyTicketError && (<Alert variant="danger">{replyTicketError}</Alert>)}
                     {replyMsg && <Alert variant='success'>{replyMsg}</Alert>}
                 </Col>
             </Row>
             <Row>
                 <Col className="text-weight-bolder text-secondary">
                     <div className="subject">Subject: {selectedTicket.subject}</div>
-                    <div className="date">Ticket Opened: {selectedTicket.openAt && new Date(selectedTicket.openAt).toLocaleString()}</div>
+                    <div className="date">Ticket Opened:{" "} {selectedTicket.openAt && new Date(selectedTicket.openAt).toLocaleString()}</div>
                     <div className="status">Status: {selectedTicket.status}</div>
                 </Col>
                 <Col className="text-right">
@@ -50,7 +50,7 @@ export const Ticket = () => {
             </Row>
             <Row className="mt-4">
                 <Col>
-                    {selectedTicket.conversations ? <MessageHistory msg={selectedTicket.conversations}/> : ''}
+                    {selectedTicket.conversations && (<MessageHistory msg={selectedTicket.conversations}/>)}
                 </Col>
             </Row>
             <hr />
@@ -60,5 +60,5 @@ export const Ticket = () => {
                 </Col>
             </Row>
         </Container>
-    )
-}
+    );
+};
