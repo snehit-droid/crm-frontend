@@ -4,6 +4,7 @@ import { Jumbotron, Row, Col, Form, Button, Spinner, Alert } from 'react-bootstr
 // import PropTypes from 'prop-types'
 import { openNewTicket } from './addTicketAction';
 import { shortText } from '../../utils/validation';
+import { resetSuccessMsg } from './addTicketSlicer';
 import './add-ticket-form.style.css';
 
 const initialFormData = {
@@ -25,7 +26,11 @@ export const AddTicketForm = () => {
     const [formData, setFormData] = useState(initialFormData);
     const [formDataError, setFormDataError] = useState(initialFormError)
 
-    useEffect(() => {}, [formData, formDataError])
+    useEffect(() => {
+        return () => {
+            successMsg && dispatch(resetSuccessMsg())
+        };
+    }, [dispatch, formData, formDataError])
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
